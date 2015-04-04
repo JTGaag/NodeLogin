@@ -25,8 +25,10 @@ public class ServerRequest {
     static InputStream is = null;
     static JSONObject jObj = null;
     static String json = "";
+
     public ServerRequest() {
     }
+
     public JSONObject getJSONFromUrl(String url, List<NameValuePair> params) {
         try {
             DefaultHttpClient httpClient = new DefaultHttpClient();
@@ -63,6 +65,7 @@ public class ServerRequest {
         }
         return jObj;
     }
+
     JSONObject jobj;
     public JSONObject getJSON(String url, List<NameValuePair> params) {
         Params param = new Params(url,params);
@@ -76,6 +79,7 @@ public class ServerRequest {
         }
         return jobj;
     }
+
     private static class Params {
         String url;
         List<NameValuePair> params;
@@ -84,6 +88,7 @@ public class ServerRequest {
             this.params = params;
         }
     }
+
     private class Request extends AsyncTask<Params, String, JSONObject> {
         @Override
         protected JSONObject doInBackground(Params... args) {

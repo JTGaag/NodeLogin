@@ -1,17 +1,44 @@
 package com.trimbl.nodelogin;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+
+import org.apache.http.NameValuePair;
+
+import java.util.List;
 
 
 public class LoginActivity extends ActionBarActivity {
+
+    EditText email, password;
+    Button button_login, button_register, button_forgot_pass;
+    String emailString, passwordString;
+    List<NameValuePair> params;
+    SharedPreferences pref;
+    ServerRequest serverRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //New serverRequest object for all our server related operations
+        serverRequest = new ServerRequest();
+
+        //Link all layout elements
+        email = (EditText)findViewById(R.id.login_email);
+        password = (EditText)findViewById(R.id.login_password);
+        button_login = (Button)findViewById(R.id.button_login);
+        button_register = (Button)findViewById(R.id.button_register);
+        button_forgot_pass = (Button)findViewById(R.id.button_forgot_pass);
+
+        //Get sharedPreferences
+        pref = getSharedPreferences("AppPref", MODE_PRIVATE);
     }
 
 
